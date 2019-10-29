@@ -46,8 +46,11 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.g
 ```
 
 
+```bash
 echo "
 alias vim=/usr/bin/nvim
 conda activate py36
 " >> /home/ronan/.zshrc
+```
+
 
