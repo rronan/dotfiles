@@ -11,22 +11,23 @@ call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'sjl/badwolf'
 Plug 'roxma/nvim-completion-manager'
-Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'hynek/vim-python-pep8-indent', {'for': ['python', 'python3']}
+" Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'neomake/neomake'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
 Plug 'python/black'
 Plug 'tpope/vim-commentary'
 Plug 'fisadev/vim-isort'
-Plug 'heavenshell/vim-pydocstring'
 Plug 'haya14busa/incsearch.vim'
-Plug 'yuttie/comfortable-motion.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-sensible'
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'romainl/vim-cool'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 
@@ -59,23 +60,22 @@ let g:python_highlight_all = 1
 " Run linter on write
 autocmd! BufWritePost * Neomake
 
-"let g:neomake_python_python_maker = neomake#makers#ft#python#python()
-"let g:neomake_python_flake8_maker = neomake#makers#ft#python#flake8()
-"let g:neomake_python_pylint_maker = {
-"  \ 'args': [
-"  \ '-d', 'W503,E203',
-"  \ '-f', 'text',
-"  \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}"',
-"  \ '-r', 'n'
-"  \ ],
-"  \ 'errorformat':
-"  \ '%A%f:%l:%c:%t: %m,' .
-"  \ '%A%f:%l: %m,' .
-"  \ '%A%f:(%l): %m,' .
-"  \ '%-Z%p^%.%#,' .
-"  \ '%-G%.%#',
-"  \ }
-"let g:neomake_python_enabled_makers = ['pylint', 'python']
+let g:neomake_python_python_maker = neomake#makers#ft#python#python()
+let g:neomake_python_flake8_maker = neomake#makers#ft#python#flake8()
+let g:neomake_python_pylint_maker = {
+  \ 'args': [
+  \ '-d', 'W503,E203',
+  \ '-f', 'text',
+  \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}"',
+  \ '-r', 'n'
+  \ ],
+  \ 'errorformat':
+  \ '%A%f:%l:%c:%t: %m,' .
+  \ '%A%f:%l: %m,' .
+  \ '%A%f:(%l): %m,' .
+  \ '%-Z%p^%.%#,' .
+  \ '%-G%.%#',
+  \ }
 let g:neomake_python_enabled_makers = ['pyflakes']
 
 " split navigations
@@ -83,61 +83,54 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
-nnoremap <C-N> :noh<CR>
-nnoremap <C-W> :w<CR>
-nnoremap <C-Q> :q<CR>
+
 inoremap <C-J> <Esc><C-W>j
 inoremap <C-K> <Esc><C-W>k
 inoremap <C-L> <Esc><C-W>l
 inoremap <C-H> <Esc><C-W>h
-inoremap <C-Z> <Esc><C-Z>
-inoremap <M-j> <Down>
-inoremap <M-k> <Up>
-inoremap <M-h> <Left>
-inoremap <M-l> <Right>
-inoremap <M-a> <CR>
-inoremap JK <Esc>
+
 tnoremap <C-J> <C-\><C-n><C-W>j
 tnoremap <C-K> <C-\><C-n><C-W>k
 tnoremap <C-L> <C-\><C-n><C-W>l
 tnoremap <C-H> <C-\><C-n><C-W>h
-tnoremap <C-Q> <C-\><C-n>:q<CR>
-inoremap <C-Z> <C-\><C-n><C-Z>
-tnoremap <Esc> <C-\><C-n>
-inoremap JK <C-\><C-n>
-tnoremap JK <C-\><C-n>
+
+
+inoremap <M-j> <Down>
+inoremap <M-k> <Up>
+inoremap <M-h> <Left>
+inoremap <M-l> <Right>
+
+
+nnoremap <C-W> :w<CR>
+nnoremap <C-Q> :q<CR>
+inoremap <C-Z> <Esc><C-Z>
 inoremap jk <C-\><C-n>
+inoremap JK <C-\><C-n>
 tnoremap jk <C-\><C-n>
+tnoremap JK <C-\><C-n>
+tnoremap <C-Q> <C-\><C-n>:q<CR>
 tnoremap <C-D> <Nop>
+tnoremap <Esc> <C-\><C-n>
+
 nnoremap pdb o__import__("pdb").set_trace()<Esc>
+nnoremap oimtis ofrom pyronan.pyronan.utils.image import tis, ti<Esc>
 inoremap pdb __import__("pdb").set_trace()
-nnoremap ipdb oimport IPython; IPython.embed()<Esc>
-inoremap ipdb import IPython; IPython.embed()
-nnoremap imtis ofrom libronan.python.utils import tis, array2image, tensor2image, mask2image<Esc>
-inoremap imtis from libronan.python.utils import tis, array2image, tensor2image, mask2image
+inoremap imtis from pyronan.pyronan.utils.image import tis, ti
 
-vmap <C-Space> <Plug>(iron-send-motion)<Esc>
-imap <C-Space> <Esc>0<S-v><Plug>(iron-send-motion)<Esc>
-nmap <C-Space> 0<S-v><Plug>(iron-send-motion)<Esc>
-
-nmap <silent> <M-j> <Plug>(pydocstring)
-
-function! Vpy()
-  let g:iron_repl_open_cmd = 'topleft vertical 100 split'
-  IronRepl
-endfunction
-command Vpy call Vpy()
-
-function! Hpy()
-  let g:iron_repl_open_cmd = ''
-  IronRepl
-endfunction
-command Hpy call Hpy()
-
-function! Pdb()
-  let g:iron_repl_open_cmd = ''
-endfunction
-command Pdb call Pdb()
+" vmap <C-Space> <Plug>(iron-send-motion)<Esc>
+" nmap <C-Space> 0<S-v><Plug>(iron-send-motion)<Esc>
+" 
+" function! Vpy()
+"   let g:iron_repl_open_cmd = 'topleft vertical 100 split'
+"   IronRepl
+" endfunction
+" command Vpy call Vpy()
+" 
+" function! Hpy()
+"   let g:iron_repl_open_cmd = ''
+"   IronRepl
+" endfunction
+" command Hpy call Hpy()
 
 autocmd BufWinEnter,WinEnter term://* startinsert
 
@@ -152,7 +145,7 @@ hi Search ctermbg=LightBlue
 hi Search ctermfg=Red
 
 function! s:Template(file)
-  execute ':0r /sequoia/data1/rriochet/.config/nvim/templates/' . a:file
+  execute ':0r /sequoia/data1/rriochet/dotfiles/config/nvim/templates/' . a:file
 endfunction
 command! -nargs=1 Template call s:Template(<f-args>)
 
@@ -171,20 +164,44 @@ endfunction
 command Ind4 call Ind4()
 
 autocmd BufWritePre *.py execute ':Black'
-
-command Mail e term:///sequoia/data1/rriochet/bin/mutt
+autocmd BufWritePre *.py execute ':Isort'
+autocmd BufWritePre *.py execute ':Semshi highlight'
 
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
 
-let g:comfortable_motion_scroll_down_key = "j"
-let g:comfortable_motion_scroll_up_key = "k"
-nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_imp    ulse_multiplier * winheight(0) * 2)<CR>
-nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_imp    ulse_multiplier * winheight(0) * -2)<CR>
-nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_imp    ulse_multiplier * winheight(0) * 4)<CR>
-nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_imp    ulse_multiplier * winheight(0) * -4)<CR>
-
 nmap " :NERDTreeToggle<CR>
 
+" jedi
+let g:jedi#show_call_signatures = "1"
+let g:jedi#use_splits_not_buffers = "top"
+let g:jedi#goto_assignments_command = "<leader>ga"
+let g:jedi#goto_definitions_command = "<leader>gd"
+let g:jedi#documentation_command = "<leader>gk"
+let g:jedi#usages_command = ""
+let g:jedi#completions_command = ""
+let g:jedi#rename_command = ""
+" disable autocompletion, cause we use deoplete for completion
+let g:jedi#completions_enabled = 0
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 100
+
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+
+set colorcolumn=88
+
+nmap <silent> <leader>rr :Semshi rename<CR>
+nmap <silent> <Tab> :Semshi goto name next<CR>
+nmap <silent> <S-Tab> :Semshi goto name prev<CR>
+nmap <silent> <leader>c :Semshi goto class next<CR>
+nmap <silent> <leader>C :Semshi goto class prev<CR>
+nmap <silent> <leader>f :Semshi goto function next<CR>
+nmap <silent> <leader>F :Semshi goto function prev<CR>
