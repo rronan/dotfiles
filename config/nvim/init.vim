@@ -28,6 +28,7 @@ Plug 'romainl/vim-cool'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Plug 'junegunn/fzf.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
+Plug 'takac/vim-hardtime'
 call plug#end()
 
 
@@ -205,3 +206,8 @@ nmap <silent> <leader>c :Semshi goto class next<CR>
 nmap <silent> <leader>C :Semshi goto class prev<CR>
 nmap <silent> <leader>f :Semshi goto function next<CR>
 nmap <silent> <leader>F :Semshi goto function prev<CR>
+
+let g:hardtime_default_on = 1
+let g:hardtime_showmsg = 1
+let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
+let g:hardtime_maxcount = 2
