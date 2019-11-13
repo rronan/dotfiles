@@ -118,6 +118,9 @@ nnoremap oimtis ofrom pyronan.pyronan.utils.image import tis, ti<Esc>
 inoremap pdb __import__("pdb").set_trace()
 inoremap imtis from pyronan.pyronan.utils.image import tis, ti
 
+imap <C-Space> <Esc>:!<Up><CR>
+nmap <C-Space> :!<Up><CR>
+
 " vmap <C-Space> <Plug>(iron-send-motion)<Esc>
 " nmap <C-Space> 0<S-v><Plug>(iron-send-motion)<Esc>
 " 
@@ -164,8 +167,8 @@ function! Ind4()
 endfunction
 command Ind4 call Ind4()
 
-autocmd BufWritePre *.py execute ':Black'
 autocmd BufWritePre *.py execute ':Isort'
+autocmd BufWritePre *.py execute ':Black'
 autocmd BufWritePre *.py execute ':Semshi highlight'
 
 if filereadable(expand("~/.vimrc_background"))
@@ -197,7 +200,7 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 
-set colorcolumn=88
+set colorcolumn=89
 
 nmap <silent> <leader>rr :Semshi rename<CR>
 nmap <silent> <Tab> :Semshi goto name next<CR>
@@ -208,6 +211,30 @@ nmap <silent> <leader>f :Semshi goto function next<CR>
 nmap <silent> <leader>F :Semshi goto function prev<CR>
 
 let g:hardtime_default_on = 1
-let g:hardtime_showmsg = 1
+let g:hardtime_showmsg = 0
 let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
-let g:hardtime_maxcount = 2
+let g:hardtime_maxcount = 5
+
+set linebreak
+set wildmenu
+set mouse=a
+set autoread
+set hidden
+set smartcase
+set wildignore+=.pyc,.swp
+set history=1000
+set undolevels=1000
+set nobackup
+set noswapfile
+
+cmap w!! w !sudo tee % >/dev/null
+
+function! s:Vimrc()
+  execute ':vsp /sequoia/data1/rriochet/dotfiles/config/nvim/init.vim'
+endfunction
+command! Vimrc call s:Vimrc()
+
+function! s:Pyronan()
+  execute ':vsp /sequoia/data1/rrriochet/pyronan/pyronan'
+endfunction
+command! Pyronan call s:Pyronan()
