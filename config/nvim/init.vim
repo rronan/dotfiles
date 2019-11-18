@@ -217,7 +217,6 @@ let g:hardtime_maxcount = 5
 
 set linebreak
 set wildmenu
-set mouse=a
 set autoread
 set hidden
 set smartcase
