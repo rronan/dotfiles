@@ -104,6 +104,7 @@ inoremap <M-l> <Right>
 
 nnoremap <C-W> :w<CR>
 nnoremap <C-Q> :q<CR>
+nnoremap <M-Q> <Nop>
 inoremap <C-Z> <Esc><C-Z>
 inoremap jk <C-\><C-n>
 inoremap JK <C-\><C-n>
@@ -209,6 +210,8 @@ nmap <silent> <leader>c :Semshi goto class next<CR>
 nmap <silent> <leader>C :Semshi goto class prev<CR>
 nmap <silent> <leader>f :Semshi goto function next<CR>
 nmap <silent> <leader>F :Semshi goto function prev<CR>
+let g:semshi#mark_selected_nodes = 2
+hi semshiSelected        ctermfg=1 ctermbg=7
 
 let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 0
