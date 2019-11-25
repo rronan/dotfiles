@@ -28,6 +28,7 @@ Plug 'romainl/vim-cool'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Plug 'junegunn/fzf.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
+Plug '907th/vim-auto-save'
 Plug 'takac/vim-hardtime'
 call plug#end()
 
@@ -213,7 +214,8 @@ nmap <silent> <leader>F :Semshi goto function prev<CR>
 let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 0
 let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
-let g:hardtime_maxcount = 5
+let g:hardtime_maxcount = 3
+let g:hardtime_allow_different_key = 1
 
 set linebreak
 set wildmenu
@@ -237,3 +239,11 @@ function! s:Pyronan()
   execute ':vsp /sequoia/data1/rrriochet/pyronan/pyronan'
 endfunction
 command! Pyronan call s:Pyronan()
+
+let g:auto_save = 1
+let g:auto_save_presave_hook = 'call AbortIfNotPython()'
+function! AbortIfNotPython()
+  if &filetype != 'python'
+    let g:auto_save_abort = 1
+  endif
+endfunction
