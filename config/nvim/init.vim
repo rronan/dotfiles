@@ -11,7 +11,6 @@ call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'sjl/badwolf'
 Plug 'roxma/nvim-completion-manager'
-" Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'neomake/neomake'
@@ -22,14 +21,23 @@ Plug 'fisadev/vim-isort'
 Plug 'haya14busa/incsearch.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sensible'
-" Plug 'terryma/vim-multiple-cursors'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'romainl/vim-cool'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Plug 'junegunn/fzf.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
-Plug '907th/vim-auto-save'
 Plug 'takac/vim-hardtime'
+Plug 'tpope/vim-fugitive'
+Plug 'chaoren/vim-wordmotion'
+Plug 'jlanzarotta/bufexplorer'
+" Plug 'srstevenson/vim-picker'
+Plug 'ervandew/supertab'
+Plug 'vim-scripts/taglist.vim'
+Plug 'terryma/vim-expand-region'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-indent'
 call plug#end()
 
 
@@ -97,48 +105,53 @@ tnoremap <C-L> <C-\><C-n><C-W>l
 tnoremap <C-H> <C-\><C-n><C-W>h
 
 
-inoremap <M-j> <Down>
-inoremap <M-k> <Up>
-inoremap <M-h> <Left>
-inoremap <M-l> <Right>
-
-
-nnoremap <C-W> :w<CR>
-nnoremap <C-Q> :q<CR>
 nnoremap <M-Q> <Nop>
 inoremap <C-Z> <Esc><C-Z>
 inoremap jk <C-\><C-n>
 inoremap JK <C-\><C-n>
 tnoremap jk <C-\><C-n>
 tnoremap JK <C-\><C-n>
-tnoremap <C-Q> <C-\><C-n>:q<CR>
 tnoremap <C-D> <Nop>
 tnoremap <Esc> <C-\><C-n>
 
 nnoremap pdb o__import__("pdb").set_trace()<Esc>
 nnoremap oimtis ofrom pyronan.pyronan.utils.image import tis, ti<Esc>
 inoremap pdb __import__("pdb").set_trace()
-inoremap imtis from pyronan.pyronan.utils.image import tis, ti
+inoremap imtis from pyronan.utils.image import tis, ti
 
-imap <C-Space> <Esc>:!<Up><CR>
-nmap <C-Space> :!<Up><CR>
 
-" vmap <C-Space> <Plug>(iron-send-motion)<Esc>
-" nmap <C-Space> 0<S-v><Plug>(iron-send-motion)<Esc>
-" 
-" function! Vpy()
-"   let g:iron_repl_open_cmd = 'topleft vertical 100 split'
-"   IronRepl
-" endfunction
-" command Vpy call Vpy()
-" 
-" function! Hpy()
-"   let g:iron_repl_open_cmd = ''
-"   IronRepl
-" endfunction
-" command Hpy call Hpy()
+nnoremap <Space> <Nop>
+vnoremap <Space> <Nop>
+" homerours
+let mapleader = ' ' 
 
-autocmd BufWinEnter,WinEnter term://* startinsert
+" Yank to the end of the line (homerours)
+nnoremap Y y$
+
+" Copy to system clipboard (homerours)
+vnoremap <leader>y "+y
+
+" Save
+nnoremap <leader>w :w<cr>
+nnoremap <leader>wa :wa<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>d :bd<cr>
+nnoremap <leader>x :x<cr>
+
+" Folds
+nnoremap <backspace> za
+vnoremap <backspace> zf
+
+" Tabs
+nnoremap <leader>tb :tabnew<cr>
+nnoremap <leader>p :tabn<cr>
+nnoremap <leader>o :tabp<cr>
+nnoremap <S-H> gT
+nnoremap <S-L> gt
+
+" Open, source .vimrc
+nnoremap <leader>ev :tabnew $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 function! Print()
   :hardcopy > /tmp/vim_print.ps
@@ -160,14 +173,14 @@ function! Ind2()
   set shiftwidth=2
   set softtabstop=2
 endfunction
-command Ind2 call Ind2()
+command! Ind2 call Ind2()
 
 function! Ind4()
   set tabstop=4
   set shiftwidth=4
   set softtabstop=4
 endfunction
-command Ind4 call Ind4()
+command! Ind4 call Ind4()
 
 autocmd BufWritePre *.py execute ':Isort'
 autocmd BufWritePre *.py execute ':Black'
@@ -217,7 +230,7 @@ hi semshiSelected        ctermfg=1 ctermbg=7
 let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 0
 let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
-let g:hardtime_maxcount = 3
+let g:hardtime_maxcount = 5
 let g:hardtime_allow_different_key = 1
 
 set linebreak
@@ -233,20 +246,28 @@ set noswapfile
 
 cmap w!! w !sudo tee % >/dev/null
 
-function! s:Vimrc()
-  execute ':vsp /sequoia/data1/rriochet/dotfiles/config/nvim/init.vim'
-endfunction
-command! Vimrc call s:Vimrc()
-
 function! s:Pyronan()
   execute ':vsp /sequoia/data1/rrriochet/pyronan/pyronan'
 endfunction
 command! Pyronan call s:Pyronan()
 
-let g:auto_save = 1
-let g:auto_save_presave_hook = 'call AbortIfNotPython()'
-function! AbortIfNotPython()
-  if &filetype != 'python'
-    let g:auto_save_abort = 1
-  endif
-endfunction
+
+let g:expand_region_text_objects = {
+      \ 'iw'  :0,
+      \ 'iW'  :0,
+      \ 'i"'  :0,
+      \ 'a"'  :0,
+      \ 'i''' :0,
+      \ 'a''' :0,
+      \ 'i]'  :0,
+      \ 'ib'  :0,
+      \ 'ab'  :0,
+      \ 'iB'  :0,
+      \ 'aB'  :0,
+      \ 'il'  :0,
+      \ 'ip'  :0,
+      \ 'ie'  :0, 
+      \ }
+
+map K <Plug>(expand_region_expand)
+map J <Plug>(expand_region_shrink)
