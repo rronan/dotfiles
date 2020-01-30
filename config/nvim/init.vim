@@ -38,6 +38,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
+Plug 'simnalamburt/vim-mundo'
 call plug#end()
 
 
@@ -114,7 +115,7 @@ tnoremap JK <C-\><C-n>
 tnoremap <C-D> <Nop>
 tnoremap <Esc> <C-\><C-n>
 
-nnoremap pdb o__import__("pdb").set_trace()<Esc>
+nnoremap pdb O__import__("pdb").set_trace()<Esc>
 nnoremap oimtis ofrom pyronan.pyronan.utils.image import tis, ti<Esc>
 inoremap pdb __import__("pdb").set_trace()
 inoremap imtis from pyronan.utils.image import tis, ti
@@ -269,5 +270,20 @@ let g:expand_region_text_objects = {
       \ 'ie'  :0, 
       \ }
 
-map K <Plug>(expand_region_expand)
-map J <Plug>(expand_region_shrink)
+map <leader>k <Plug>(expand_region_expand)
+map <leader>j <Plug>(expand_region_shrink)
+
+
+" Enable persistent undo so that undo history persists across vim sessions
+set undofile
+set undodir=~/.vim/undo
+
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid, when inside an event handler
+" (happens when dropping a file on gvim) and for a commit message (it's
+" likely a different one than last time).
+autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | end
