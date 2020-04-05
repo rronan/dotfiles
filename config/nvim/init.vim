@@ -203,7 +203,7 @@ let g:jedi#use_splits_not_buffers = "top"
 let g:jedi#goto_assignments_command = "<leader>ga"
 let g:jedi#goto_definitions_command = "<leader>gd"
 let g:jedi#documentation_command = "<leader>gk"
-let g:jedi#usages_command = ""
+let g:jedi#usages_command = "<leader>gu"
 let g:jedi#completions_command = ""
 let g:jedi#rename_command = ""
 " disable autocompletion, cause we use deoplete for completion
