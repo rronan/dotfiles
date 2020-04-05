@@ -39,6 +39,7 @@ Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'simnalamburt/vim-mundo'
+Plug 'christoomey/vim-conflicted'
 call plug#end()
 
 
@@ -154,6 +155,8 @@ nnoremap <S-L> gt
 nnoremap <leader>ev :tabnew $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+nnoremap <leader>tt <C-W>T
+
 function! Print()
   :hardcopy > /tmp/vim_print.ps
   !ps2pdf /tmp/vim_print.ps
@@ -228,6 +231,8 @@ nmap <silent> <leader>F :Semshi goto function prev<CR>
 let g:semshi#mark_selected_nodes = 2
 hi semshiSelected        ctermfg=1 ctermbg=7
 
+nmap <C-n> :GitNextConflict<CR>
+
 let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 0
 let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
@@ -272,6 +277,7 @@ let g:expand_region_text_objects = {
 
 map <leader>k <Plug>(expand_region_expand)
 map <leader>j <Plug>(expand_region_shrink)
+
 
 
 " Enable persistent undo so that undo history persists across vim sessions
