@@ -40,6 +40,8 @@ Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'simnalamburt/vim-mundo'
 Plug 'christoomey/vim-conflicted'
+Plug 'eugen0329/vim-esearch'
+Plug 'APZelos/blamer.nvim'
 call plug#end()
 
 
@@ -156,6 +158,7 @@ nnoremap <leader>ev :tabnew $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap <leader>tt <C-W>T
+nnoremap <leader>gb :BlamerToggle<cr>
 
 function! Print()
   :hardcopy > /tmp/vim_print.ps
@@ -293,3 +296,6 @@ autocmd BufReadPost *
   \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
   \ |   exe "normal! g`\""
   \ | end
+
+let g:vim_isort_config_overrides = {'multi_line_output': 3}
+
