@@ -127,6 +127,9 @@ vnoremap <Space> <Nop>
 " homerours
 let mapleader = ' ' 
 
+nnoremap Q q
+nnoremap q 11k<cr>
+nnoremap m 9j<cr>
 " Yank to the end of the line (homerours)
 nnoremap Y y$
 
@@ -135,6 +138,7 @@ vnoremap <leader>y "+y
 
 " Save
 nnoremap <leader>w :w<cr>
+nnoremap <leader>W :noautocmd w<cr>
 nnoremap <leader>wa :wa<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>d :bd<cr>
