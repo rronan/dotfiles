@@ -40,6 +40,8 @@ Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'simnalamburt/vim-mundo'
 Plug 'christoomey/vim-conflicted'
+Plug 'eugen0329/vim-esearch'
+Plug 'APZelos/blamer.nvim'
 call plug#end()
 
 
@@ -160,6 +162,7 @@ nnoremap <leader>ev :tabnew $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap <leader>tt <C-W>T
+nnoremap <leader>gb :BlamerToggle<cr>
 
 function! Print()
   :hardcopy > /tmp/vim_print.ps
@@ -207,7 +210,7 @@ let g:jedi#use_splits_not_buffers = "top"
 let g:jedi#goto_assignments_command = "<leader>ga"
 let g:jedi#goto_definitions_command = "<leader>gd"
 let g:jedi#documentation_command = "<leader>gk"
-let g:jedi#usages_command = ""
+let g:jedi#usages_command = "<leader>gu"
 let g:jedi#completions_command = ""
 let g:jedi#rename_command = ""
 " disable autocompletion, cause we use deoplete for completion
@@ -297,3 +300,6 @@ autocmd BufReadPost *
   \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
   \ |   exe "normal! g`\""
   \ | end
+
+let g:vim_isort_config_overrides = {'multi_line_output': 3}
+
