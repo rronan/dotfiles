@@ -42,6 +42,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'christoomey/vim-conflicted'
 Plug 'eugen0329/vim-esearch'
 Plug 'APZelos/blamer.nvim'
+Plug 'TaDaa/vimade'
 call plug#end()
 
 

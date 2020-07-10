@@ -21,7 +21,6 @@ bindkey "^[[B" history-substring-search-down
 bindkey -s "^K" "^[[A"
 bindkey -s "^J" "^[[B"
 bindkey -s "^@" "^M"
-#bindkey -s "^F" " fg^M ^M"
 bindkey -s '^[z' ' ^u fg\n'
 
 alias vim='nvim'
