@@ -29,3 +29,4 @@ alias imgcat='/usr/local/bin/imgcat imgcat'
 
 zstyle ':completion:*:directory-stack' list-colors '=(#b) #([0-9]#)*( *)==1;34=1;36'
 
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
