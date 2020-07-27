@@ -43,6 +43,7 @@ Plug 'christoomey/vim-conflicted'
 Plug 'eugen0329/vim-esearch'
 Plug 'APZelos/blamer.nvim'
 Plug 'TaDaa/vimade'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 
