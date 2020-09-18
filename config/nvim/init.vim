@@ -1,7 +1,4 @@
 set tabstop=4       " The width of a TAB is set to 4.
-" Still it is a \t. It is just that
-" Vim will interpret it to be having
-" a width of 4.
 set shiftwidth=4    " Indents will have a width of 4
 set softtabstop=4   " Sets the number of columns for a TAB
 set expandtab       " Expand TABs to spaces
@@ -9,30 +6,22 @@ syntax on
 
 call plug#begin()
 Plug 'vim-airline/vim-airline'
-Plug 'sjl/badwolf'
-Plug 'roxma/nvim-completion-manager'
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'lifepillar/vim-mucomplete'
 Plug 'neomake/neomake'
 Plug 'tpope/vim-surround'
 Plug 'python/black'
 Plug 'tpope/vim-commentary'
-Plug 'fisadev/vim-isort'
 Plug 'haya14busa/incsearch.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-sensible'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'romainl/vim-cool'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
-" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'takac/vim-hardtime'
 Plug 'tpope/vim-fugitive'
 Plug 'chaoren/vim-wordmotion'
 Plug 'jlanzarotta/bufexplorer'
-" Plug 'srstevenson/vim-picker'
 Plug 'ervandew/supertab'
-Plug 'vim-scripts/taglist.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
@@ -40,30 +29,34 @@ Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'simnalamburt/vim-mundo'
 Plug 'christoomey/vim-conflicted'
-Plug 'eugen0329/vim-esearch'
 Plug 'APZelos/blamer.nvim'
 Plug 'TaDaa/vimade'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pechorin/any-jump.vim'
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
+Plug 'stsewd/isort.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 
 " Some basics:
-	nnoremap c "_c
-	set nocompatible
-	filetype plugin on
-	syntax on
-	set encoding=utf-8
-	set number relativenumber
+nnoremap c "_c
+set nocompatible
+filetype plugin on
+syntax on
+set encoding=utf-8
+set number relativenumber
 " Enable autocompletion:
-	set wildmode=longest,list,full
+set wildmenu
+set wildmode=longest,list,full
+set wildignorecase
+set wildignore=*.git/*,*.tags,tags,*.o,*.class,.pyc,.swp
 " Disables automatic commenting on newline:
-	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Goyo plugin makes text more readable when writing prose:
-	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
+map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
-	set splitbelow splitright
+set splitbelow splitright
 
 
 " python folding
@@ -125,7 +118,6 @@ nnoremap oimtis ofrom pyronan.pyronan.utils.image import tis, ti<Esc>
 inoremap pdb __import__("pdb").set_trace()
 inoremap imtis from pyronan.utils.image import tis, ti
 
-
 nnoremap <Space> <Nop>
 vnoremap <Space> <Nop>
 " homerours
@@ -181,22 +173,9 @@ function! s:Template(file)
 endfunction
 command! -nargs=1 Template call s:Template(<f-args>)
 
-function! Ind2()
-  set tabstop=2
-  set shiftwidth=2
-  set softtabstop=2
-endfunction
-command! Ind2 call Ind2()
-
-function! Ind4()
-  set tabstop=4
-  set shiftwidth=4
-  set softtabstop=4
-endfunction
-command! Ind4 call Ind4()
-
-autocmd BufWritePre *.py execute ':Isort'
+" autocmd BufWritePre *.py execute ':Isort'
 autocmd BufWritePre *.py execute ':Black'
+autocmd BufWritePre *.py execute ':Isort'
 autocmd BufWritePre *.py execute ':Semshi highlight'
 
 if filereadable(expand("~/.vimrc_background"))
@@ -215,11 +194,15 @@ let g:jedi#documentation_command = "<leader>gk"
 let g:jedi#usages_command = "<leader>gu"
 let g:jedi#completions_command = ""
 let g:jedi#rename_command = ""
-" disable autocompletion, cause we use deoplete for completion
-let g:jedi#completions_enabled = 0
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 100
+" mucomplete
+" set shortmess+=c   " Shut off completion messages
+" set belloff+=ctrlg " If Vim beeps during completion
+" set completeopt-=preview
+set completeopt+=longest,menuone,noselect
+let g:jedi#popup_on_dot = 1  " It may be 1 as well
+let g:mucomplete#enable_auto_at_startup = 0
+
 
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -245,26 +228,19 @@ nmap <C-n> :GitNextConflict<CR>
 let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 0
 let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
-let g:hardtime_maxcount = 5
+let g:hardtime_maxcount = 8
 let g:hardtime_allow_different_key = 1
 
 set linebreak
-set wildmenu
 set autoread
 set hidden
 set smartcase
-set wildignore+=.pyc,.swp
 set history=1000
 set undolevels=1000
 set nobackup
 set noswapfile
 
 cmap w!! w !sudo tee % >/dev/null
-
-function! s:Pyronan()
-  execute ':vsp /sequoia/data1/rrriochet/pyronan/pyronan'
-endfunction
-command! Pyronan call s:Pyronan()
 
 
 let g:expand_region_text_objects = {
@@ -303,5 +279,25 @@ autocmd BufReadPost *
   \ |   exe "normal! g`\""
   \ | end
 
-let g:vim_isort_config_overrides = {'multi_line_output': 3}
 
+" better navigation of command history
+" allow next completion after / alternative
+" is <C-E> if <C-D> makes to long of a list
+if has('nvim-0.5.0')
+	cnoremap <expr> / wildmenumode() ? "\<C-Y>" : "/"
+else
+	cnoremap <expr> / wildmenumode() ? "\<C-E>" : "/"
+endif
+
+
+" Normal mode: Jump to definition under cursore
+noremap <leader>ju :AnyJump<CR>
+
+" Visual mode: jump to selected text in visual mode
+xnoremap <leader>ju :AnyJumpVisual<CR>
+
+let g:pydocstring_formatter = 'google'
+let g:pydocstring_doq_path = "/private/home/ronanr/conda/envs/py36/bin/doq"
+map <leader>ds <Plug>(pydocstring)
+
+let g:isort_command = 'isort'
