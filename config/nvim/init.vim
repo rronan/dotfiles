@@ -33,7 +33,6 @@ Plug 'APZelos/blamer.nvim'
 Plug 'TaDaa/vimade'
 Plug 'pechorin/any-jump.vim'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
-Plug 'stsewd/isort.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 
@@ -122,10 +121,9 @@ nnoremap <Space> <Nop>
 vnoremap <Space> <Nop>
 " homerours
 let mapleader = ' ' 
+let maplocalleader = ' ' 
 
 nnoremap Q q
-nnoremap q 11k<cr>
-nnoremap m 9j<cr>
 " Yank to the end of the line (homerours)
 nnoremap Y y$
 
@@ -175,7 +173,7 @@ command! -nargs=1 Template call s:Template(<f-args>)
 
 " autocmd BufWritePre *.py execute ':Isort'
 autocmd BufWritePre *.py execute ':Black'
-autocmd BufWritePre *.py execute ':Isort'
+" autocmd BufWritePre *.py execute ':Isort'
 autocmd BufWritePre *.py execute ':Semshi highlight'
 
 if filereadable(expand("~/.vimrc_background"))
@@ -297,7 +295,5 @@ noremap <leader>ju :AnyJump<CR>
 xnoremap <leader>ju :AnyJumpVisual<CR>
 
 let g:pydocstring_formatter = 'google'
-let g:pydocstring_doq_path = "/private/home/ronanr/conda/envs/py36/bin/doq"
+let g:pydocstring_doq_path = "/Users/ronan/miniconda3/envs/py36/bin/doq"
 map <leader>ds <Plug>(pydocstring)
-
-let g:isort_command = 'isort'
