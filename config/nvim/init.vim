@@ -33,6 +33,7 @@ Plug 'APZelos/blamer.nvim'
 Plug 'TaDaa/vimade'
 Plug 'pechorin/any-jump.vim'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
+Plug 'stsewd/isort.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 
@@ -167,13 +168,12 @@ hi Search ctermbg=LightBlue
 hi Search ctermfg=Red
 
 function! s:Template(file)
-  execute ':0r /sequoia/data1/rriochet/dotfiles/config/nvim/templates/' . a:file
+  execute ':0r ' . fnamemodify("$MYVIMRC", ':p:h') . '/dotfiles/config/nvim/templates/' . a:file
 endfunction
 command! -nargs=1 Template call s:Template(<f-args>)
 
-" autocmd BufWritePre *.py execute ':Isort'
 autocmd BufWritePre *.py execute ':Black'
-" autocmd BufWritePre *.py execute ':Isort'
+autocmd BufWritePre *.py execute ':Isort'
 autocmd BufWritePre *.py execute ':Semshi highlight'
 
 if filereadable(expand("~/.vimrc_background"))
