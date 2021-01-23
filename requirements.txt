@@ -1,9 +1,12 @@
-black
-flake8
 jedi
-isort
 neovim
 pep8
 pyflakes
 pylint
 pynvim
+black==20.8b1
+flake8==3.8.4
+flake8-bugbear==20.11.1
+isort==5.6.4
+rope==0.18.0
+
