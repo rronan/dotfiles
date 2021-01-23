@@ -30,8 +30,8 @@ echo ". ~/conda/etc/profile.d/conda.sh" >> ~/.zshrc && \
 echo "conda activate base" >> ~/.zshrc && \
 source .zshrc && \
 conda update --all -y
-conda create -n py36 python=3.6
-conda activate py36
+conda create -n py37 python=3.7
+conda activate py37
 ```
 
 
@@ -45,11 +45,17 @@ ln -s ~/dotfiles/config/* ~/.config
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
+Install libronan:
+
+```
+git clone --recursive https://github.com/rronan/prezto.git "$HOME"
+source "$HOME"/libronan/environ.zsh
+```
 
 ```bash
 echo "
 alias vim=/usr/bin/nvim
-conda activate py36
+conda activate py37
 " >> /home/ronan/.zshrc
 ```
 

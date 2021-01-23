@@ -18,9 +18,4 @@ bindkey -s "^J" "^[[B"
 bindkey -s "^@" "^M"
 bindkey jk vi-cmd-mode
 bindkey -a " " accept-line
-bindkey -s "^l" " pybp ^m"
 bindkey -s "^h" " $EDITOR $HOME/notes.txt ^M"
-
-alias python='python $@ 2> >(tee >(cat | grep "^ *File" | sed "s/ *File/vim/g" | sed "s/, line / +/g" | sed "s/, in .*//g" | sed -E  "s: \"([^/]): \"$PWD/\1:g" 1>! /tmp/python.breakpoints))'
-
-
