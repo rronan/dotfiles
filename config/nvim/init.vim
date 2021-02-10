@@ -34,6 +34,7 @@ Plug 'TaDaa/vimade'
 Plug 'pechorin/any-jump.vim'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 Plug 'stsewd/isort.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'python-rope/ropevim'
 call plug#end()
 
 
