@@ -34,6 +34,8 @@ Plug 'TaDaa/vimade'
 Plug 'pechorin/any-jump.vim'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 Plug 'stsewd/isort.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'python-rope/ropevim'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'sindrets/winshift.nvim'
 Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 call plug#end()
@@ -123,8 +125,8 @@ inoremap imtis from pyronan.utils.image import tis, ti
 nnoremap <Space> <Nop>
 vnoremap <Space> <Nop>
 " homerours
-let mapleader = ' ' 
-let maplocalleader = ' ' 
+let mapleader = ' '
+let maplocalleader = ' '
 
 nnoremap Q q
 " Yank to the end of the line (homerours)
@@ -257,7 +259,7 @@ let g:expand_region_text_objects = {
       \ 'aB'  :0,
       \ 'il'  :0,
       \ 'ip'  :0,
-      \ 'ie'  :0, 
+      \ 'ie'  :0,
       \ }
 
 map <leader>k <Plug>(expand_region_expand)

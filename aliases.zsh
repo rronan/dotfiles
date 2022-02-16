@@ -1,11 +1,5 @@
-export EDITOR="$HOME"/nvim/bin/nvim
-alias vim="$HOME"/nvim/bin/nvim
-alias nvim="$HOME"/nvim/bin/nvim
-
-alias vup="nvim +PlugUpgrade +PlugUpdate"
-alias zprezto="$EDITOR ~/.zprezto"
-alias zshrc="$EDITOR ~/.zshrc"
-alias zsource='source ~/.zshrc'
+export EDITOR=nvim
+alias vim=nvim
 
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
@@ -18,4 +12,3 @@ bindkey -s "^J" "^[[B"
 bindkey -s "^@" "^M"
 bindkey jk vi-cmd-mode
 bindkey -a " " accept-line
-bindkey -s "^h" " $EDITOR $HOME/notes.txt ^M"
