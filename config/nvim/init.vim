@@ -149,8 +149,6 @@ vnoremap <backspace> zf
 
 " Tabs
 nnoremap <leader>tb :tabnew<cr>
-nnoremap <leader>p :tabn<cr>
-nnoremap <leader>o :tabp<cr>
 nnoremap <S-H> gT
 nnoremap <S-L> gt
 
@@ -158,13 +156,8 @@ nnoremap <S-L> gt
 nnoremap <leader>ev :tabnew $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+nnoremap <leader>tt <C-W>T
 nnoremap <leader>gb :BlamerToggle<cr>
-
-function! Print()
-  :hardcopy > /tmp/vim_print.ps
-  !ps2pdf /tmp/vim_print.ps
-  !lp -d MFP_C-pro /tmp/vim_print.ps
-endfunction
 
 set hlsearch
 hi Search ctermbg=LightBlue
