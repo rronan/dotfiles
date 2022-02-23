@@ -7,11 +7,7 @@ sudo apt-get install zsh
 sh -s /bin/zsh
 ```
 
-```bash
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O ~/miniconda.sh
-bash ~/miniconda.sh -b -p $HOME/miniconda
-```
-
+Install miniconda
 
 Install neovim:
 ```bash
