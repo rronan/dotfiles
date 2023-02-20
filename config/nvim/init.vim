@@ -343,8 +343,9 @@ nnoremap <leader>ty :call MoveToNextTab()<CR>
 nnoremap <leader>tr :call MoveToPrevTab()<CR>
 
 let g:pydocstring_formatter = 'google'
-let g:pydocstring_doq_path = "/Users/ronan/miniconda3/envs/py38/bin/doq"
+let g:pydocstring_doq_path = "/Users/ronan/miniconda/envs/py39/bin/doq"
 map <leader>ds <Plug>(pydocstring)
 
 let g:shfmt_extra_args = '-i 4'
 let g:shfmt_fmt_on_save = 1
+

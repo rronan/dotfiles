@@ -14,3 +14,10 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
+
+alias outip="curl ifconfig.me"
+case "$OSTYPE" in
+  linux*)   alias inip="hostname -I | awk '{ print $1 }'" ;;
+  darwin*)  alias inip="Ipconfig getifaddr en0" ;;
+esac
+
