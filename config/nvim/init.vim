@@ -126,8 +126,8 @@ inoremap imtis from pyronan.utils.image import tis, ti
 nnoremap <Space> <Nop>
 vnoremap <Space> <Nop>
 " homerours
-let mapleader = ' ' 
-let maplocalleader = ' ' 
+let mapleader = ' '
+let maplocalleader = ' '
 
 nnoremap Q q
 " Yank to the end of the line (homerours)
@@ -150,8 +150,6 @@ vnoremap <backspace> zf
 
 " Tabs
 nnoremap <leader>tb :tabnew<cr>
-nnoremap <leader>p :tabn<cr>
-nnoremap <leader>o :tabp<cr>
 nnoremap <S-H> gT
 nnoremap <S-L> gt
 
@@ -161,12 +159,6 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap <leader>tt <C-W>T
 nnoremap <leader>gb :BlamerToggle<cr>
-
-function! Print()
-  :hardcopy > /tmp/vim_print.ps
-  !ps2pdf /tmp/vim_print.ps
-  !lp -d MFP_C-pro /tmp/vim_print.ps
-endfunction
 
 set hlsearch
 hi Search ctermbg=LightBlue
@@ -180,6 +172,7 @@ command! -nargs=1 Template call s:Template(<f-args>)
 autocmd BufWritePre *.py execute ':Black'
 autocmd BufWritePre *.py execute ':Isort'
 autocmd BufWritePre *.py execute ':Semshi highlight'
+autocmd BufWritePre *.py execute ':Semshi highlight'
 
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
@@ -190,7 +183,7 @@ nmap " :NERDTreeToggle<CR>
 
 " jedi
 let g:jedi#show_call_signatures = "1"
-let g:jedi#use_splits_not_buffers = "top"
+let g:jedi#use_splits_not_buffers = "right"
 let g:jedi#goto_assignments_command = "<leader>ga"
 let g:jedi#goto_definitions_command = "<leader>gd"
 let g:jedi#documentation_command = "<leader>gk"
@@ -299,8 +292,59 @@ noremap <leader>ju :AnyJump<CR>
 " Visual mode: jump to selected text in visual mode
 xnoremap <leader>ju :AnyJumpVisual<CR>
 
+
+" Start Win-Move mode:
+nnoremap <leader>we <Cmd>WinShift<CR>
+
+function MoveToPrevTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() != 1
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabprev
+    endif
+    sp
+  else
+    close!
+    exe "0tabnew"
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+function MoveToNextTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() < tab_nr
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabnext
+    endif
+    sp
+  else
+    close!
+    tabnew
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+nnoremap <leader>ty :call MoveToNextTab()<CR>
+nnoremap <leader>tr :call MoveToPrevTab()<CR>
+
 let g:pydocstring_formatter = 'google'
-let g:pydocstring_doq_path = "/Users/ronan/miniconda3/envs/py36/bin/doq"
+let g:pydocstring_doq_path = "/Users/ronan/miniconda3/envs/py38/bin/doq"
 map <leader>ds <Plug>(pydocstring)
 
 let g:shfmt_extra_args = '-i 4'
