@@ -36,6 +36,9 @@ Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 Plug 'stsewd/isort.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'python-rope/ropevim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
+Plug 'sindrets/winshift.nvim'
+Plug 'ekalinin/Dockerfile.vim'
 call plug#end()
 
 
@@ -257,7 +260,7 @@ let g:expand_region_text_objects = {
       \ 'aB'  :0,
       \ 'il'  :0,
       \ 'ip'  :0,
-      \ 'ie'  :0, 
+      \ 'ie'  :0,
       \ }
 
 map <leader>k <Plug>(expand_region_expand)
@@ -299,3 +302,56 @@ xnoremap <leader>ju :AnyJumpVisual<CR>
 let g:pydocstring_formatter = 'google'
 let g:pydocstring_doq_path = "/Users/ronan/miniconda3/envs/py36/bin/doq"
 map <leader>ds <Plug>(pydocstring)
+
+let g:shfmt_extra_args = '-i 4'
+let g:shfmt_fmt_on_save = 1
+
+" Start Win-Move mode:
+nnoremap <leader>we <Cmd>WinShift<CR>
+
+function MoveToPrevTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() != 1
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabprev
+    endif
+    sp
+  else
+    close!
+    exe "0tabnew"
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+function MoveToNextTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() < tab_nr
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabnext
+    endif
+    sp
+  else
+    close!
+    tabnew
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+nnoremap <leader>ty :call MoveToNextTab()<CR>
+nnoremap <leader>tr :call MoveToPrevTab()<CR>
