@@ -1,18 +1,35 @@
-Install zsh:
-```bash
-sudo apt-get update
-sudo apt -u install tmux
-sudo apt-get install neovim
-sudo apt-get install zsh
-sh -s /bin/zsh
+Install:
+```
+zsh
+oh-my-zsh
+miniconda
+neovim
+tmux
 ```
 
-Install miniconda
-
-Install neovim:
-```bash
+Then:
+```
 git clone git@github.com:rronan/dotfiles.git
-pip install -r dotfiles/requirements.txt
 ln -s ~/dotfiles/config/* ~/.config
+pip install -r neovim
+```
+
+Add to `~/.zshrc`:
+```
+plugins=(
+  git
+  bundler
+  macos
+  zsh-history-substring-search
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+source ~/dotfiles/aliases.zsh
+```
+
+Optional: 
+```
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
+
