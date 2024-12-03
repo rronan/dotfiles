@@ -7,7 +7,7 @@ neovim
 tmux
 ```
 
-Then:
+Clone repository:
 ```
 git clone git@github.com:rronan/dotfiles.git
 ln -s ~/dotfiles/config/* ~/.config
