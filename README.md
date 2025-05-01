@@ -4,6 +4,7 @@ zsh
 oh-my-zsh
 miniconda
 neovim
+https://github.com/junegunn/vim-plug
 tmux
 ```
 
@@ -11,7 +12,6 @@ Clone repository:
 ```
 git clone git@github.com:rronan/dotfiles.git
 ln -s ~/dotfiles/config/* ~/.config
-pip install -r neovim
 ```
 
 Add to `~/.zshrc`:
