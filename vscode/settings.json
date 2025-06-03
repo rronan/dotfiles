@@ -1,0 +1,199 @@
+{
+    "vim.camelCaseMotion.enable": true,
+    "vim.cursorStylePerMode.normal": "block",
+    "vim.easymotion": true,
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<Space>"
+            ],
+            "after": [
+                "<Nop>"
+            ]
+        },
+        {
+            "before": [
+                "Y"
+            ],
+            "after": [
+                "y",
+                "$"
+            ]
+        },
+        {
+            "before": [
+                "<backspace>"
+            ],
+            "after": [
+                "z",
+                "a"
+            ]
+        },
+        // vnoremap <leader>y "+y
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<Space>"
+            ],
+            "after": [
+                "<Nop>"
+            ]
+        },
+    ],
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        },
+    ],
+    "editor.lineNumbers": "relative",
+    "python.defaultInterpreterPath": "/Users/ronan/miniconda/envs/py39/bin/python",
+    "editor.formatOnSave": true,
+    "terminal.integrated.inheritEnv": false,
+    // "[python]": {
+    //     "editor.defaultFormatter": "charliermarsh.ruff"
+    // },
+    "python.formatting.provider": "black",
+    "python.sortImports.args": [
+        "--profile",
+        "black"
+    ],
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportOptionalSubscript": "none",
+        "reportOptionalOperand": "none",
+        "reportGeneralTypeIssues": "none"
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "go.testEnvFile": "${workspaceFolder}/test.env",
+    "go.testTimeout": "300s",
+    "workbench.editor.enablePreview": false,
+    "editor.minimap.enabled": false,
+    "C_Cpp.default.cppStandard": "c++20",
+    "debug.onTaskErrors": "abort",
+    "C_Cpp.default.includePath": [
+        "/usr/local/include"
+    ],
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "code-runner.executorMap": {
+        "javascript": "node",
+        "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+        "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "zig": "zig run",
+        "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "php": "php",
+        "python": "python -u",
+        "perl": "perl",
+        "perl6": "perl6",
+        "ruby": "ruby",
+        "go": "go run",
+        "lua": "lua",
+        "groovy": "groovy",
+        "powershell": "powershell -ExecutionPolicy ByPass -File",
+        "bat": "cmd /c",
+        "shellscript": "bash",
+        "fsharp": "fsi",
+        "csharp": "scriptcs",
+        "vbscript": "cscript //Nologo",
+        "typescript": "ts-node",
+        "coffeescript": "coffee",
+        "scala": "scala",
+        "swift": "swift",
+        "julia": "julia",
+        "crystal": "crystal",
+        "ocaml": "ocaml",
+        "r": "Rscript",
+        "applescript": "osascript",
+        "clojure": "lein exec",
+        "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+        "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+        "racket": "racket",
+        "scheme": "csi -script",
+        "ahk": "autohotkey",
+        "autoit": "autoit3",
+        "dart": "dart",
+        "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+        "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+        "haskell": "runghc",
+        "nim": "nim compile --verbosity:0 --hints:off --run",
+        "lisp": "sbcl --script",
+        "kit": "kitc --run",
+        "v": "v run",
+        "sass": "sass --style expanded",
+        "scss": "scss --style expanded",
+        "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
+        "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "sml": "cd $dir && sml $fileName"
+    },
+    "code-runner.runInTerminal": true,
+    "editor.accessibilitySupport": "off",
+    "audioCues.taskEnded": "off",
+    "gitlens.currentLine.enabled": false,
+    "gitlens.currentLine.scrollable": false,
+    "gitlens.currentLine.pullRequests.enabled": false,
+    "gitlens.codeLens.recentChange.enabled": false,
+    "gitlens.blame.heatmap.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "git.ignoreMissingGitWarning": true,
+    "accessibility.signals.lineHasError": {
+        "sound": "off"
+    },
+    "accessibility.signals.lineHasFoldedArea": {
+        "sound": "off"
+    },
+    "accessibility.signals.lineHasBreakpoint": {
+        "sound": "off"
+    },
+    "accessibility.signals.lineHasInlineSuggestion": {
+        "sound": "off"
+    },
+    "accessibility.signals.terminalQuickFix": {
+        "sound": "off"
+    },
+    "accessibility.signals.onDebugBreak": {
+        "sound": "off"
+    },
+    "accessibility.signals.noInlayHints": {
+        "sound": "off"
+    },
+    "workbench.colorTheme": "Default Dark+",
+    "gopls": {},
+    "github.copilot.editor.enableAutoCompletions": true,
+    "workbench.startupEditor": "none",
+    "ruff.lint.run": "onSave",
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "print.folder.fileNames": true,
+    "print.folder.include": [],
+    "print.folder.exclude": [
+        "{bin,obj,out}",
+        "node_modules",
+        "data",
+        "**/*.{bin,exe,dll,hex,pdb,pdf,pfx,png,jpg,gif,bmp,suo,design}"
+    ],
+    "print.folder.maxLines": 1200,
+    "print.folder.maxFiles": 30,
+    "print.folder.includeFileList": false,
+    "files.associations": {
+        "*.py": "python"
+    },
+    "python.locator": "js",
+    "github.copilot.advanced": {},
+}
