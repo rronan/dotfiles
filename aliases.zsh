@@ -1,4 +1,4 @@
-export EDITOR=/usr/local/bin/nvim
+export EDITOR=nvim
 alias vim=nvim
 
 bindkey -M vicmd "k" history-substring-search-up
