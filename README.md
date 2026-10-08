@@ -10,6 +10,7 @@ Install `zsh` plugins:
 for PLUGIN in zsh-history-substring-search zsh-autosuggestions zsh-syntax-highlighting; do
     git clone https://github.com/zsh-users/"$PLUGIN".git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/"$PLUGIN"
 done
+git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 ```
 
 Add to `~/.zshrc`:
@@ -21,6 +22,7 @@ plugins=(
   zsh-history-substring-search
   zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-vi-mode
 )
 ```
 
