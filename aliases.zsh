@@ -2,12 +2,16 @@ export EDITOR=nvim
 export ZVM_VI_EDITOR="nvim"
 alias vim=nvim
 
-bindkey -M vicmd "k" history-substring-search-up
-bindkey -M vicmd "j" history-substring-search-down
-bindkey -s "^F" " fg^M ^M"
-bindkey -s "^@" "^M"
-# bindkey jk vi-cmd-mode
-bindkey -a " " accept-line
+# zsh-vi-mode initializes lazily (on first prompt) and resets the keymaps,
+# so custom bindings must be applied in its after-init hook.
+zvm_after_init() {
+    bindkey -M vicmd "k" history-substring-search-up
+    bindkey -M vicmd "j" history-substring-search-down
+    bindkey -s "^F" " fg^M ^M"
+    bindkey -s "^@" "^M"
+    # bindkey jk vi-cmd-mode
+    bindkey -a " " accept-line
+}
 
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
