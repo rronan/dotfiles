@@ -1,4 +1,5 @@
 export EDITOR=nvim
+export ZVM_VI_EDITOR="nvim"
 alias vim=nvim
 
 bindkey -M vicmd "k" history-substring-search-up
