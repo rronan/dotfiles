@@ -32,3 +32,11 @@ sq() {
 # zsh can't export functions, and `sq` is invisible to a child bash/zsh,
 # so inline its definition into the shell that `watch` spawns.
 wsq() { command watch -n 5 -x zsh -c "COLUMNS=\$(tput cols); $(functions sq); sq" }
+
+gwa() {
+    git worktree add ~/$1 ronan.riochet/$1
+}
+
+gwab() {
+    git worktree add ~/$1 -b ronan.riochet/$1
+}
